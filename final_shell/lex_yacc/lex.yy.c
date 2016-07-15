@@ -453,13 +453,14 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "shell.l"
+/*shell.l: simple lexical analyzer for the shell.
 */
 #line 5 "shell.l"
 
 #include <string.h>
 #include "y.tab.h"
 
-#line 463 "lex.yy.c"
+#line 464 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -644,7 +645,7 @@ YY_DECL
 #line 11 "shell.l"
 
 
-#line 648 "lex.yy.c"
+#line 649 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -734,7 +735,7 @@ YY_RULE_SETUP
 {
         	return NEWLINE;
 
-   		}
+   	}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -754,52 +755,52 @@ case 4:
 YY_RULE_SETUP
 #line 26 "shell.l"
 {
-			return GREATGREAT;
-		}
+        	return GREATGREAT;
+	}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 30 "shell.l"
 {
-			return GREATAMPERSAND;
-		}
+		return GREATAMPERSAND;
+	}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 34 "shell.l"
 {
-			return GREATGREATAMPERSAND;
-		}
+		return GREATGREATAMPERSAND;
+	}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 38 "shell.l"
 {
-			return LESS;
-		}
+		return LESS;
+	}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 42 "shell.l"
 {
-			return AMPERSAND;
-		}
+		return AMPERSAND;
+	}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 46 "shell.l"
 {
-			return PIPE;
-		}
+		return PIPE;
+	}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 50 "shell.l"
 {
-	 					/* Assume that file names have only alpha chars */ 
-						yylval.string_val = strdup(yytext);
-						return WORD;
-					}
+ 			/* Assume that file names have only alpha chars */ 
+				yylval.string_val = strdup(yytext);
+				return WORD;
+			}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
@@ -814,7 +815,7 @@ YY_RULE_SETUP
 #line 61 "shell.l"
 ECHO;
 	YY_BREAK
-#line 818 "lex.yy.c"
+#line 819 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1814,5 +1815,7 @@ void yyfree (void * ptr )
 #line 61 "shell.l"
 
 
+
+int yywrap() { return 1; }
 
 

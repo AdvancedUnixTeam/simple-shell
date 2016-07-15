@@ -1,5 +1,5 @@
-hell.l: simple lexical analyzer for the shell.
- */
+/*shell.l: simple lexical analyzer for the shell.
+*/
 
 %{
 
@@ -10,10 +10,10 @@ hell.l: simple lexical analyzer for the shell.
 
 %%
 
-\n 		{
+\n 	{
         	return NEWLINE;
 
-   		}
+   	}
 
 [ \t]   {
             /* Discard spaces and tabs */
@@ -24,34 +24,34 @@ hell.l: simple lexical analyzer for the shell.
         }
 
 ">>"	{
-			return GREATGREAT;
-		}
+        	return GREATGREAT;
+	}
 
 ">&"	{
-			return GREATAMPERSAND;
-		}
+		return GREATAMPERSAND;
+	}
 
 ">>&"	{
-			return GREATGREATAMPERSAND;
-		}
+		return GREATGREATAMPERSAND;
+	}
 
-"<"		{
-			return LESS;
-		}
+"<"	{
+		return LESS;
+	}
 
-"&"		{
-			return AMPERSAND;
-		}
+"&"	{
+		return AMPERSAND;
+	}
 
-"|"		{
-			return PIPE;
-		}
+"|"	{
+		return PIPE;
+	}
 
 [^ \t\n][^ \t\n]*	{
-	 					/* Assume that file names have only alpha chars */ 
-						yylval.string_val = strdup(yytext);
-						return WORD;
-					}
+ 			/* Assume that file names have only alpha chars */ 
+				yylval.string_val = strdup(yytext);
+				return WORD;
+			}
 
 .       {
             /*Invalid character in input*/
@@ -59,4 +59,6 @@ hell.l: simple lexical analyzer for the shell.
         }
 
 %%
+
+int yywrap() { return 1; }
 

@@ -1,5 +1,6 @@
-%token NOTOKEN, GREAT, NEWLINE, WORD, GREATGREAT, PIPE, AMPERSAND
+%token NOTOKEN PIPE GREAT NEWLINE WORD GREATGREAT AMPERSAND GREATGREATAMPERSAND GREATAMPERSAND LESS
 
+%%
 Before:
 	argument:WORD{
 		Command._currentSimpleCommand->insertArgument($1);
@@ -33,4 +34,12 @@ io_modifier:
 		| GREATAMPERSAND Word
 		| LESS Word
 			;
+%%
+
+#include "lex.yy.c"
+
+main() {
+	return yyparse();
+}
+int yyerror( char *s ) { fprintf( stderr, "%s\n", s); }
 
