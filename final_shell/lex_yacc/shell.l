@@ -10,22 +10,52 @@ hell.l: simple lexical analyzer for the shell.
 
 %%
 
-\n {
-        return NEWLINE;
+\n 		{
+        	return NEWLINE;
 
-   }
+   		}
 
 [ \t]   {
-                /* Discard spaces and tabs */
+            /* Discard spaces and tabs */
         }
 
 ">"     {
-                return GREAT;
+            return GREAT;
         }
 
+">>"	{
+			return GREATGREAT;
+		}
+
+">&"	{
+			return GREATAMPERSAND;
+		}
+
+">>&"	{
+			return GREATGREATAMPERSAND;
+		}
+
+"<"		{
+			return LESS;
+		}
+
+"&"		{
+			return AMPERSAND;
+		}
+
+"|"		{
+			return PIPE;
+		}
+
+[^ \t\n][^ \t\n]*	{
+	 					/* Assume that file names have only alpha chars */ 
+						yylval.string_val = strdup(yytext);
+						return WORD;
+					}
+
 .       {
-                /*Invalid character in input*/
-                return NOTOKEN
+            /*Invalid character in input*/
+            return NOTOKEN;
         }
 
 %%
