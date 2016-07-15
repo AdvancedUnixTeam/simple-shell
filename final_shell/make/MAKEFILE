@@ -1,1 +1,26 @@
-/******** This is the makefile **********/
+YFLAGS        = -d
+
+PROGRAM       = shell
+
+OBJS          = shell.tab.o lex.yy.o 
+
+SRCS          = shell.tab.c lex.yy.c 
+
+CC            = gcc 
+
+all:            $(PROGRAM)
+
+.c.o:           $(SRCS)
+                $(CC) -c $*.c -o $@ -O
+
+shell.tab.c:        shell.y
+                yacc $(YFLAGS) shell.y
+
+lex.yy.c:       lex.l 
+                flex lex.l
+
+calc:           $(OBJS)
+                $(CC) $(OBJS)  -o $@ -lfl -lm
+
+clean:;         rm -f $(OBJS) core *~ \#* *.o $(PROGRAM) \
+                y.* lex.yy.* shell.tab.*
