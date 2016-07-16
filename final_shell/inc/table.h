@@ -4,20 +4,20 @@
 
 // Command Data Structure 
 // Describes a simple command and arguments 
-struct *SimpleCommand { 
+struct Command { 
         // Available space for arguments currently preallocated 
         int _numberOfAvailableArguments; 
         // Number of arguments 
         int _numberOfArguments; 
         // Array of arguments 
         char ** _arguments; 
-        SimpleCommand(); // not implemented
-        void insertArgument( char * argument ); // not implemented
+        void (*Command)(); // constructor -- Not Implemented
+        void (*insertArgument)(char * argument); // Inserts Arguments into a Command -- Not Implemented
 }; 
 
 // Describes a complete command with the multiple pipes if any 
 // and input/output redirection if any. 
-struct *Command { 
+struct CommandTable { 
         int _numberOfAvailableSimpleCommands; 
         int _numberOfSimpleCommands; 
         SimpleCommand ** _simpleCommands; 
@@ -25,12 +25,19 @@ struct *Command { 
         char * _inputFile; 
         char * _errFile; 
         int _background; 
-        void *prompt();  // not implemented
-        void *print(); 	// not implemented
-        void execute(); 
-        void clear(); // not implemented
+        void (*prompt)(void);  // Not Sure -- Not Implemented
+        void (*print)(void); 	// Not Sure -- Not Implemented
+        void (*execute)(void);  // Executes the command table -- Needs to be refactored
+        void (*clear)(void); // Not Sure -- Not Implemented
         Command(); // not implemented
-        void insertSimpleCommand( SimpleCommand * simpleCommand ); // not implemented
-        static Command _currentCommand; 
-        static SimpleCommand *_currentSimpleCommand; 
+        void (*insertCommand)(Command * command ); // Inserts a Command into the Command Table -- Not Implemented
+        static CommandTable _currentCommandTable; 
+        static Command *_currentCommand; 
 }; 
+
+
+
+
+
+
+
