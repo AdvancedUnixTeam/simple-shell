@@ -11,7 +11,7 @@ After:
 		expandWildcardsIfNecessary($1);
 	};
 
-goal: command_list;
+/*goal: command_list;*/
 
 arg_list:
 		arg_list WORD

@@ -2,7 +2,7 @@
 
 // Command Data Structure 
 // Describes a simple command and arguments 
-struct SimpleCommand { 
+struct *SimpleCommand { 
         // Available space for arguments currently preallocated 
         int _numberOfAvailableArguments; 
         // Number of arguments 
@@ -15,7 +15,7 @@ struct SimpleCommand { 
 
 // Describes a complete command with the multiple pipes if any 
 // and input/output redirection if any. 
-struct Command { 
+struct *Command { 
         int _numberOfAvailableSimpleCommands; 
         int _numberOfSimpleCommands; 
         SimpleCommand ** _simpleCommands; 
@@ -23,8 +23,8 @@ struct Command { 
         char * _inputFile; 
         char * _errFile; 
         int _background; 
-        void prompt();  // not implemented
-        void print(); 	// not implemented
+        void *prompt();  // not implemented
+        void *print(); 	// not implemented
         void execute(); 
         void clear(); // not implemented
         Command(); // not implemented
