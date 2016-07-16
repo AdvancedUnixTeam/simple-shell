@@ -5,6 +5,7 @@
 
 #include <string.h>
 #include "y.tab.h"
+#include "commands.h"
 
 %}
 

@@ -89,6 +89,7 @@ void execute_command() {
 
 	// set the initial input
 	int fdin;
+	// infile not defined
 	if (infile) 
 		fdin = open(infile,O_READ);
 	else // Use default input
@@ -103,6 +104,7 @@ void execute_command() {
 		//setup output
 		if (i == numsimplecommands-1) {
 			// Last simple command
+			// outfile not defined
 			if(outfile)
 				fdout=open(outfile,â€|â€|);
 			else // Use default output
@@ -125,6 +127,7 @@ void execute_command() {
 		// Create child process
 		ret=fork();
 		if(ret==0) {
+			// scmd not defined
 			execvp(scmd[i].args[0], scmd[i].args);
 			perrror(â€œexecvpâ€);
 			_exit(1);
