@@ -1,5 +1,9 @@
 #include "nautilus.h"
 
+/* ===================================================================================================
+    Shell Stuff
+   ===================================================================================================  */
+    
 /* Make sure the shell is running interactively as the foreground job
    before proceeding. */
 void init_shell () {
@@ -137,6 +141,46 @@ void launch_job (job *j, int foreground) {
 		put_job_in_foreground (j, 0);
 	else
 		put_job_in_background (j, 0);
+}
+
+/* ===================================================================================================
+    Job Control Stuff
+   ===================================================================================================  */
+
+/* Find the active job with the indicated pgid.  */
+job *find_job (pid_t pgid) {
+
+	job *j;
+
+	for (j = first_job; j; j = j->next)
+	if (j->pgid == pgid)
+	  return j;
+
+	return NULL;
+}
+
+/* Return true if all processes in the job have stopped or completed.  */
+int job_is_stopped (job *j) {
+
+	process *p;
+
+	for (p = j->first_process; p; p = p->next)
+	if (!p->completed && !p->stopped)
+	  return 0;
+
+	return 1;
+}
+
+/* Return true if all processes in the job have completed.  */
+int job_is_completed (job *j) {
+  
+	process *p;
+
+	for (p = j->first_process; p; p = p->next)
+	if (!p->completed)
+	  return 0;
+
+	return 1;
 }
 
 
