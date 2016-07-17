@@ -14,6 +14,12 @@ int shell_is_interactive;
 void init_shell();
 
 
+void launch_process (process *p, 
+                      pid_t pgid,
+                      int infile, int outfile, int errfile,
+                      int foreground);
+
+void launch_job (job *j, int foreground);
 
 
 /* ===================================================================================================
