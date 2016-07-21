@@ -1,14 +1,6 @@
 #include "nautilus.h"
-#include "old_shell.h"
 
-int main(int argc, char **argv)
-{
-	// Config Files
-	// Command Line Loop
-	shell_loop();
-	// Shut Down / Clean Up
-	return EXIT_SUCCESS;
-}
+
 
 /* ===================================================================================================
     Shell Stuff

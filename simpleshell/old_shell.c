@@ -5,11 +5,13 @@
 #define SHELL_TOK_DELIM " \t\r\n\a"
 
 #include "old_shell.h"
+#include "nautilus.h"
 
 int main(int argc, char **argv)
 {
 	// Config Files
 	// Command Line Loop
+    init_shell();
 	shell_loop();
 	// Shut Down / Clean Up
 	return EXIT_SUCCESS;
@@ -25,10 +27,26 @@ void shell_loop(void)
 		printf("【ツ】 ");
 		line = shell_readLine();
 		args = shell_split_line(line);
-		status = shell_execute(args);
+		job *theJob = malloc(sizeof(job));
+        shell_processTokens(theJob, args);
+        //launch_job(theJob);
+        //status = shell_execute(args);
 		free(line);
 		free(args);
 	} while (status);
+}
+
+int shell_processTokens(job *j, char ** args) {
+    int i;
+    for(i = 0; i < sizeof(args) / sizeof(args[0]); i=i+1) {
+        switch(args[i]) {
+            case "|" :
+                printf(" Pipe !\n" );
+                break;
+            default :
+                printf("Invalid input\n" );
+        }
+    }
 }
 
 /*    
