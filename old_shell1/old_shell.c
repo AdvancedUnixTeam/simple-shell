@@ -32,7 +32,7 @@ void shell_loop(void)
 }
 
 /*    
- *  The code in this method could be replaced with the following:
+ *  The code in this function could be replaced with the following:
  *      
  *      char *line = NULL;
  *      ssize_t bufsize = 0; // have getline allocate a buffer for us
